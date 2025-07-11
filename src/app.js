@@ -1,6 +1,9 @@
-import express from 'express'
+import express, { response } from 'express'
 
 const app = express()
+
+ //indicar para o express ler body com json.
+ app.use(express.json())
 
 //mock
 
@@ -39,10 +42,16 @@ app.get('/', (request, response) => {
 
 })
 
-app.get('/produto-list', (request, response) => {
+app.get('/product-list', (request, response) => {
 
     response.status(200).send(produtos)
 
+})
+
+app.post('/product', (request, response) => {
+    produtos.push(request.body)
+
+    response.status(201).send("success on insert data!")
 })
  
 export default app
